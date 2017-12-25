@@ -1,30 +1,30 @@
 <template>
-  <div class="paginator">
-    <div class="paginator__comment paginator__total" v-if="layout.indexOf('total') !== -1">
+  <div class="f-paginator">
+    <div class="f-paginator__comment f-paginator__total" v-if="layout.indexOf('total') !== -1">
       共
       {{total}}
       条
     </div>
-    <div class="paginator__comment paginator__sizer" v-if="layout.indexOf('sizer') !== -1">
+    <div class="f-paginator__comment f-paginator__sizer" v-if="layout.indexOf('sizer') !== -1">
       每页
       <select v-model="currentSize">
         <option v-for="(size, index) in pageSizes" :key="index">{{size}}</option>
       </select>
       条
     </div>
-    <ul class="paginator__pager" :class="{'paginator__pager--background': background}">
-      <li class="paginator__number" :class="{'paginator__number--disabled': pageIndex === 1}" @click="prevPage()">
+    <ul class="f-paginator__pager" :class="{'f-paginator__pager--background': background}">
+      <li class="f-paginator__number" :class="{'f-paginator__number--disabled': pageIndex === 1}" @click="prevPage()">
         &lt;
       </li>
-      <li class="paginator__number" v-for="(number, index) in numbers" :key="index"
-          :class="{'paginator__number--active': number === pageIndex, 'paginator__number--separated': number === '...'}" @click="changePage(number)">
+      <li class="f-paginator__number" v-for="(number, index) in numbers" :key="index"
+          :class="{'f-paginator__number--active': number === pageIndex, 'f-paginator__number--separated': number === '...'}" @click="changePage(number)">
         {{number}}
       </li>
-      <li class="paginator__number" :class="{'paginator__number--disabled': pageIndex === pageCount}" @click="nextPage()">
+      <li class="f-paginator__number" :class="{'f-paginator__number--disabled': pageIndex === pageCount}" @click="nextPage()">
         &gt;
       </li>
     </ul>
-    <div class="paginator__comment paginator__jumper" v-if="layout.indexOf('jumper') !== -1">
+    <div class="f-paginator__comment f-paginator__jumper" v-if="layout.indexOf('jumper') !== -1">
       前往
       <input type="text" v-model="currentIndex" @keyup="jumpToPage($event)"/>
       页
@@ -216,114 +216,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss">
-$color-black: #303133;
-$color-blue: #4f99c6;
-$size-normal: 14px;
-
-.paginator:after {
-  content: ' ';
-  display: block;
-  height: 0;
-  clear: both;
-  visibility: hidden;
-}
-
-.paginator__total {
-  margin-right: 10px;
-}
-
-.paginator__pager {
-  float: left;
-  margin: 0 10px 0;
-  padding: 0;
-  font-size: 0;
-}
-
-.paginator__pager--background {
-  .paginator__number {
-    border: 1px solid #dddddd;
-  }
-  .paginator__number--active {
-    background-color: $color-blue;
-    border-color: $color-blue;
-    color: #ffffff;
-  }
-  .paginator__number--active:hover {
-    color: #ffffff;
-  }
-}
-
-.paginator__number {
-  display: inline-block;
-  position: relative;
-  float: left;
-  box-sizing: border-box;
-  padding: 6px 12px;
-  margin-left: -1px;
-  cursor: pointer;
-  color: $color-black;
-  font-size: $size-normal;
-  line-height: 16px;
-}
-
-.paginator__number:first-child {
-  margin-left: 0;
-}
-
-.paginator__number:hover {
-  color: $color-blue;
-}
-
-.paginator__number--separated {
-  cursor: default;
-  padding-left: 8px;
-  padding-right: 8px;
-}
-
-.paginator__number--separated:hover {
-  color: $color-black;
-  background: none;
-}
-
-.paginator__number--active {
-  cursor: default;
-  color: $color-blue;
-}
-
-.paginator__number--active:hover {
-  color: $color-blue;
-}
-
-.paginator__number--disabled {
-  cursor: not-allowed;
-  color: #777777;
-}
-
-.paginator__number--disabled:hover {
-  color: #777777;
-}
-
-.paginator__comment {
-  float: left;
-  height: 30px;
-  font-size: $size-normal;
-  line-height: 30px;
-}
-
-.paginator__jumper input,
-.paginator__sizer select {
-  margin: 0;
-  width: 40px;
-  height: 30px;
-  box-sizing: border-box;
-  vertical-align: top;
-  border: 1px solid #dddddd;
-  outline: none;
-}
-
-.paginator__jumper input {
-  padding-left: 3px;
-}
-</style>
