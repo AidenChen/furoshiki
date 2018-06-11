@@ -14,14 +14,14 @@
     </div>
     <ul class="f-paginator__pager" :class="{'f-paginator__pager--background': background}">
       <li class="f-paginator__number" :class="{'f-paginator__number--disabled': pageIndex === 1}" @click="prevPage()">
-        &lt;
+        {{previousText}}
       </li>
       <li class="f-paginator__number" v-for="(number, index) in numbers" :key="index"
           :class="{'f-paginator__number--active': number === pageIndex, 'f-paginator__number--separated': number === '...'}" @click="changePage(number)">
         {{number}}
       </li>
       <li class="f-paginator__number" :class="{'f-paginator__number--disabled': pageIndex === pageCount}" @click="nextPage()">
-        &gt;
+        {{nextText}}
       </li>
     </ul>
     <div class="f-paginator__comment f-paginator__jumper" v-if="layout.indexOf('jumper') !== -1">
@@ -91,6 +91,20 @@ export default {
       type: Boolean,
       default () {
         return false
+      }
+    },
+    // “上一页”按钮文本
+    previousText: {
+      type: String,
+      default () {
+        return '<'
+      }
+    },
+    // “下一页”按钮文本
+    nextText: {
+      type: String,
+      default () {
+        return '>'
       }
     }
   },
