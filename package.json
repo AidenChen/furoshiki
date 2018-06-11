@@ -1,6 +1,6 @@
 {
   "name": "furoshiki",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "A Vue.js project",
   "author": "Aiden <chenscrocker@hotmail.com>",
   "main": "packages/index.js",
